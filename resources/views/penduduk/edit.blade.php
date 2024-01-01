@@ -98,10 +98,10 @@
                     <select name="agama_id" id="agama_id" class="form-control">
                         <option value="">-- Pilih --</option>
                         @foreach ($agama as $item)
-                            <option value="{{ $item->id }}" @if ($penduduk->agama_id=='{{ $item->id }}'){{ "selected" }} @endif>{{ $item->agama }}</option>
+                            <option value="{{ $item->id }}" @if ($penduduk->agama_id == $item->id) selected @endif>{{ $item->agama }}</option>
                         @endforeach
                     </select>
-                  </div>
+                </div>                
                   <div>
                     <button type="submit" name="submit" class="btn btn-primary mb-4">Save</button>
                   </div>

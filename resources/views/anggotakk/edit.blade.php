@@ -77,46 +77,46 @@
               <form name="formAgama" action="/anggotakk/{{ $anggotakk->id }}" method="post" onsubmit="return validateForm()">
                 @csrf
                 @method('PUT')
-                <div class="form-group">
-                  <label>Kk ID</label>
-                  <select name="kk_id" id="kk_id" class="form-control">
-                      <option value="">-- Pilih --</option>
-                      @foreach ($kk as $item)
-                          <option value="{{ $item->id }}" @if ($anggotakk->kk_id==='{{ $item->id }}'){{ "selected" }} @endif>{{ $item->nokk }}</option>
-                      @endforeach
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Penduduk ID</label>
-                  <select name="penduduk_id" id="penduduk_id" class="form-control">
-                      <option value="">-- Pilih --</option>
-                      @foreach ($penduduk as $item)
-                          <option value="{{ $item->id }}" @if ($anggotakk->penduduk_id==='{{ $item->id }}'){{ "selected" }} @endif>{{ $item->nama }}</option>
-                      @endforeach
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Hubungan Kartu Keluarga ID</label>
-                  <select name="hubungankk_id" id="hubungankk_id" class="form-control">
-                      <option value="">-- Pilih --</option>
-                      @foreach ($hubungankk as $item)
-                          <option value="{{ $item->id }}" @if ($anggotakk->hubungankk_id==='{{ $item->id }}'){{ "selected" }} @endif>{{ $item->hubungankk }}</option>
-                      @endforeach
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Status Aktif</label>
-                  <select name="statusaktif" id="statusaktif" class="form-control">
-                      <option value="">-- Pilih --</option>
-                      <option value="1" @if ($anggotakk->statusaktif=='1'){{ "selected" }} @endif>Aktif</option>
-                      <option value="0" @if ($anggotakk->statusaktif=='0'){{ "selected" }} @endif>Tidak Aktif</option>
-                  </select>
-                </div>
                   <div class="form-group">
-                    <label>User ID</label>
-                    <select name="user_id" id="user_id" class="form-control">
-                      <option value="{{ auth()->user()->id }}">{{ auth()->user()->name }}</option>
-                  </select>
+                      <label>Kk ID</label>
+                        <select name="kk_id" id="kk_id" class="form-control">
+                            <option value="">-- Pilih --</option>
+                            @foreach ($kk as $item)
+                                <option value="{{ $item->id }}" @if ($anggotakk->kk_id == $item->id) selected @endif>{{ $item->nokk }}</option>
+                            @endforeach
+                        </select>
+                  </div>
+                  <div class="form-group">
+                      <label>Penduduk ID</label>
+                        <select name="penduduk_id" id="penduduk_id" class="form-control">
+                            <option value="">-- Pilih --</option>
+                            @foreach ($penduduk as $item)
+                                <option value="{{ $item->id }}" @if ($anggotakk->penduduk_id == $item->id) selected @endif>{{ $item->nama }}</option>
+                            @endforeach
+                        </select>
+                  </div>
+                  <div class="form-group">
+                      <label>Hubungan Kartu Keluarga ID</label>
+                        <select name="hubungankk_id" id="hubungankk_id" class="form-control">
+                            <option value="">-- Pilih --</option>
+                            @foreach ($hubungankk as $item)
+                                <option value="{{ $item->id }}" @if ($anggotakk->hubungankk_id == $item->id) selected @endif>{{ $item->hubungankk }}</option>
+                            @endforeach
+                        </select>
+                  </div>
+                  <div class="form-group">
+                      <label>Status Aktif</label>
+                        <select name="statusaktif" id="statusaktif" class="form-control">
+                            <option value="">-- Pilih --</option>
+                            <option value="1" @if ($anggotakk->statusaktif == '1') selected @endif>Aktif</option>
+                            <option value="0" @if ($anggotakk->statusaktif == '0') selected @endif>Tidak Aktif</option>
+                        </select>
+                  </div>
+                  <div class="form-group">
+                      <label>User ID</label>
+                        <select name="user_id" id="user_id" class="form-control">
+                            <option value="{{ auth()->user()->id }}">{{ auth()->user()->name }}</option>
+                        </select>
                   </div>
                   <div>
                     <button type="submit" name="submit" class="btn btn-primary mb-4">Save</button>
@@ -126,11 +126,29 @@
           </div>
           <script>
             function validateForm() {
-              // Validasi Agama
-              if (document.forms["formAgama"]["agama"].value == "") {
-                  alert("Anda belum memasukkan Agama Anda");
-                  document.forms["formAgama"]["agama"].focus();
-                  return false;
+              // Validasi Kk ID
+              if (document.forms["formAnggotakk"]["kk_id"].selectedIndex < 1) {
+              alert("Anda belum memilih KK ID Anda");
+              document.forms["formAnggotakk"]["kk_id"].focus();
+              return false;
+              }
+              // Validasi Penduduk ID
+              if (document.forms["formAnggotakk"]["penduduk_id"].selectedIndex < 1) {
+              alert("Anda belum memilih Penduduk ID Anda");
+              document.forms["formAnggotakk"]["penduduk_id"].focus();
+              return false;
+              }
+              // Validasi Hubungankk ID
+              if (document.forms["formAnggotakk"]["hubungankk_id"].selectedIndex < 1) {
+              alert("Anda belum memilih Hubungankk ID Anda");
+              document.forms["formAnggotakk"]["hubungankk_id"].focus();
+              return false;
+              }
+              // Validasi Status Aktif ID
+              if (document.forms["formAnggotakk"]["statusaktif"].selectedIndex < 1) {
+              alert("Anda belum memilih Status Aktif Anda");
+              document.forms["formAnggotakk"]["statusaktif"].focus();
+              return false;
               }
             }
         </script>
