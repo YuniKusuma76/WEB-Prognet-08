@@ -13,7 +13,7 @@ class KkController extends Controller
     public function index()
     {
         $data = Kk::all();
-        return view('Kk.list', compact('data'));
+        return view('kk.list', compact('data'));
     }
 
     /**
