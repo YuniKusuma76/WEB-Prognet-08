@@ -21,7 +21,7 @@ class HubungankkController extends Controller
      */
     public function create()
     {
-        return view('Hubungankk.new');
+        return view('hubungankk.new');
     }
 
     /**
